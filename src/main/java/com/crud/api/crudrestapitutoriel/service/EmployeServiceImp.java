@@ -29,4 +29,17 @@ public class EmployeServiceImp implements EmployeService{
         return employeRepository.findById(id).orElseThrow(()->
                                                  new ResourceNotFoundException("Employe","Id",id));
     }
+
+    @Override
+    public Employe updateEmploye(Employe employe, long id) {
+
+        // we need to check whether employee with given id is exist in DB or not
+        Employe existingEmploye = employeRepository.findById(id).orElseThrow(
+                ()-> new ResourceNotFoundException("Employe","Id",id));
+        existingEmploye.setFirstName(employe.getFirstName());
+        existingEmploye.setEmail(employe.getEmail());
+        existingEmploye.setLastName(employe.getLastName());
+        employeRepository.save(existingEmploye);
+        return existingEmploye;
+    }
 }
