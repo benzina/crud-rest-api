@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/employes")
 public class EmployeController {
@@ -18,4 +20,11 @@ public class EmployeController {
     public ResponseEntity<Employe> saveEmploye(@RequestBody Employe employe){
         return new ResponseEntity<>(employeService.saveEmploye(employe), HttpStatus.CREATED);
     }
+
+    // build get all employes rest api
+    @GetMapping("/employes")
+    public List<Employe> getAllEmployes(){
+        return employeService.getAllEmployes();
+    }
+
 }
