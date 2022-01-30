@@ -3,6 +3,7 @@ package com.crud.api.crudrestapitutoriel.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Table(name = "employes")
 @Entity
@@ -19,4 +20,15 @@ public class Employe {
 
     @Column(name = "email")
      private String email;
+
+    @Column(updatable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdDate = new Date();
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdTime= new Date();
+
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updatedDate = new Date();
 }
