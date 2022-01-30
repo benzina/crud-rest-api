@@ -9,4 +9,5 @@ public interface EmployeService {
     public List<Employe> getAllEmployes();
     public Employe getEmployeById(Long id);
     public Employe updateEmploye(Employe employe,long id);
+    public void deleteEmploye(Long id);
 }

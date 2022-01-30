@@ -42,4 +42,13 @@ public class EmployeServiceImp implements EmployeService{
         employeRepository.save(existingEmploye);
         return existingEmploye;
     }
+
+    @Override
+    public void deleteEmploye(Long id) {
+
+        //check whether a employe exist in DB or not
+        employeRepository.findById(id).orElseThrow(()->
+                                            new ResourceNotFoundException("Employe","ID",id));
+        employeRepository.deleteById(id);
+    }
 }

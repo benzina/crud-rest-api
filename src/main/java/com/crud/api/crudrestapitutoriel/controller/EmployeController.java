@@ -40,4 +40,12 @@ public class EmployeController {
         return new ResponseEntity<Employe>(employeService.updateEmploye(employe,id),HttpStatus.OK);
     }
 
+    //build delete employe rest api
+    @DeleteMapping("{id}")
+    public ResponseEntity<String> deleteEmploye(@PathVariable("id") Long id){
+        //delete employe from DB
+        employeService.deleteEmploye(id);
+        return new ResponseEntity<String>("Employe deleted successfully !.",HttpStatus.OK);
+    }
+
 }
