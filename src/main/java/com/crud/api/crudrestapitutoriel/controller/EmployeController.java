@@ -1,8 +1,8 @@
 package com.crud.api.crudrestapitutoriel.controller;
 
 import com.crud.api.crudrestapitutoriel.model.Employe;
-import com.crud.api.crudrestapitutoriel.model.dto.EmployeConverter;
 import com.crud.api.crudrestapitutoriel.model.dto.EmployeDto;
+import com.crud.api.crudrestapitutoriel.model.mapper.EmployeMapper;
 import com.crud.api.crudrestapitutoriel.service.EmployeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,20 +16,21 @@ import java.util.List;
 public class EmployeController {
     @Autowired
     private EmployeService employeService;
+
     @Autowired
-    private EmployeConverter employeConverter;
+    private EmployeMapper mapper;
 
     // build create employe rest api
     @PostMapping("/new-employe")
     public ResponseEntity<Employe> saveEmploye(@RequestBody EmployeDto employeDto){
-        Employe employe=employeConverter.dtoToEntity(employeDto);
+        Employe employe = mapper.dtoToEmploye(employeDto);
         return new ResponseEntity<>(employeService.saveEmploye(employe), HttpStatus.CREATED);
     }
 
     // build get all employes rest api
     @GetMapping
     public List<EmployeDto> getAllEmployes(){
-        return employeConverter.entityToDto(employeService.getAllEmployes());
+        return mapper.modelsToDtos(employeService.getAllEmployes());
     }
 
     //build get employe by id rest api
@@ -42,7 +43,7 @@ public class EmployeController {
     @PutMapping("{id}")
     public ResponseEntity<Employe> updateEmploye(@PathVariable("id") Long id,
                                                  @RequestBody EmployeDto employeDto){
-        Employe employe = employeConverter.dtoToEntity(employeDto);
+        Employe employe = mapper.dtoToEmploye(employeDto);
         return new ResponseEntity<Employe>(employeService.updateEmploye(employe,id),HttpStatus.OK);
     }
 
@@ -55,3 +56,4 @@ public class EmployeController {
     }
 
 }
+

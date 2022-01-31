@@ -1,13 +1,15 @@
 package com.crud.api.crudrestapitutoriel.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Table(name = "employes")
 @Entity
-@Data
+@Data @NoArgsConstructor @AllArgsConstructor
 public class Employe {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -31,4 +33,10 @@ public class Employe {
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedDate = new Date();
+
+    public Employe(String firstName, String lastName, String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+    }
 }
