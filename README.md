@@ -6,8 +6,8 @@ This app implements crud rest api service using :
 
     - Spring boot
     - postgres SQL database
-    -jpa/hibernate
-    -Unit Testing
+    - jpa/hibernate
+    - Unit Testing
 
   
 
