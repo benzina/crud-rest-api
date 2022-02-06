@@ -40,11 +40,11 @@ public class EmployeController {
     }
 
     //build update employe rest api
-    @PutMapping("{id}")
-    public ResponseEntity<Employe> updateEmploye(@PathVariable("id") Long id,
+    @PutMapping("/update/{id}")
+    public ResponseEntity<EmployeDto> updateEmploye(@PathVariable("id") Long id,
                                                  @RequestBody EmployeDto employeDto){
         Employe employe = mapper.dtoToEmploye(employeDto);
-        return new ResponseEntity<Employe>(employeService.updateEmploye(employe,id),HttpStatus.OK);
+        return new ResponseEntity<EmployeDto>(mapper.employeToDto(employeService.updateEmploye(employe,id)),HttpStatus.OK);
     }
 
     //build delete employe rest api
