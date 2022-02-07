@@ -8,8 +8,4 @@ This app implements crud rest api service using :
     - postgres SQL database
     - jpa/hibernate
     - Unit Testing
-
-  
-
-
-
+    - restful service
